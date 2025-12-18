@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy Birthday</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Bootstrap -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+body {
+    background: linear-gradient(135deg,#6a85ff,#b1c4ff);
+    min-height: 100vh;
+    font-family: 'Poppins', sans-serif;
+}
+
+.page {
+    display: none;
+    min-height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.page.active {
+    display: flex;
+    animation: fadeIn .7s ease;
+}
+
+.card-box {
+    background: #f8f9ff;
+    border-radius: 25px;
+    padding: 40px;
+    max-width: 900px;
+    width: 100%;
+    box-shadow: 0 20px 40px rgba(0,0,0,.15);
+}
+
+h1 {
+    font-weight: 700;
+    color: #355CFF;
+}
+h2 {
+    font-weight: 700;
+    color: #355CFF;
+}
+h3 {
+    font-weight: 700;
+    color: #355CFF;
+}
+
+.subtitle {
+    color: #5f6fff;
+    letter-spacing: 1px;
+    font-size: 14px;
+}
+
+.gift {
+    width: 180px;
+    cursor: pointer;
+
+    /* efek cantik */
+    filter: drop-shadow(0 15px 25px rgba(60,90,255,.45));
+    transition: transform .35s ease, filter .35s ease;
+
+    /* animasi halus */
+    animation: floatGift 3s ease-in-out infinite;
+}
+
+/* hover desktop */
+.gift:hover {
+    transform: scale(1.12);
+    filter: drop-shadow(0 20px 35px rgba(60,90,255,.6));
+}
+
+/* animasi naik-turun halus */
+@keyframes floatGift {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0); }
+}
+
+
+.gift-box {
+    background: #e9edff;
+    border-radius: 20px;
+    padding: 30px;
+    cursor: pointer;
+    transition: .3s;
+}
+.gift-box:hover {
+    transform: translateY(-10px);
+    background: #dce2ff;
+}
+
+.photo-box {
+    background: #e9edff;
+    border-radius: 15px;
+    height: 150px;
+}
+
+@keyframes fadeIn {
+    from {opacity:0; transform:translateY(20px)}
+    to {opacity:1; transform:translateY(0)}
+}
+
+.photo-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 130px;
+    gap: 15px;
+}
+
+.photo {
+    background: linear-gradient(180deg,#dbe3ff,#eef1ff);
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    color: #555;
+    font-weight: 500;
+}
+
+/* FOTO TINGGI (STRIP VERTIKAL) */
+.photo.tall {
+    grid-row: span 3;
+}
+
+/* RESPONSIVE HP */
+@media (max-width: 768px) {
+    .photo-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .photo.tall {
+        grid-row: span 2;
+    }
+}
+
+
+/* VIDEO PAGE */
+.video-card {
+    background: #e8edff;
+}
+
+.video-info {
+    background: #f8f9ff;
+    border-radius: 20px;
+    padding: 25px;
+    height: 100%;
+}
+
+.video-icon {
+    font-size: 50px;
+}
+
+.video-frame {
+    background: #1f2a44;
+    border-radius: 20px;
+    padding: 15px;
+    box-shadow: inset 0 0 15px rgba(0,0,0,.4);
+}
+
+.video-frame iframe {
+    width: 100%;
+    height: 320px;
+    border-radius: 15px;
+    border: none;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .video-frame iframe {
+        height: 220px;
+    }
+}
+
+.photo {
+    background: #dbe3ff;
+    border-radius: 12px;
+    overflow: hidden; /* PENTING */
+    position: relative;
+}
+
+/* FOTO AUTO TENGAH */
+.photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;       /* AUTO CROP SMART */
+    object-position: center; /* SELALU TENGAH */
+    display: block;
+}
+
+/* FOTO TINGGI */
+.photo.tall {
+    grid-row: span 3;
+}
+
+.gift-box-soft {
+    width: 220px;
+    height: 220px;
+    margin: 30px auto;
+    border-radius: 22px; /* soft corner */
+    background: linear-gradient(145deg, #f2f5ff, #dde5ff);
+    box-shadow:
+        0 15px 30px rgba(60,90,255,.25),
+        inset 0 0 0 1px rgba(255,255,255,.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform .35s ease, box-shadow .35s ease;
+}
+
+/* gambar selalu utuh & tengah */
+.gift-box-soft img {
+    max-width: 75%;
+    max-height: 75%;
+    object-fit: contain; /* PENTING: tidak terpotong */
+}
+
+/* hover halus */
+.gift-box-soft:hover {
+    transform: translateY(-6px) scale(1.03);
+    box-shadow:
+        0 22px 40px rgba(60,90,255,.35),
+        inset 0 0 0 1px rgba(255,255,255,.8);
+}
+
+.gift-card {
+    background: #f3f6ff;
+    border-radius: 22px;
+    padding: 18px;
+    text-align: center;
+    cursor: pointer;
+    transition: transform .3s ease, box-shadow .3s ease;
+    box-shadow: 0 15px 30px rgba(60,90,255,.2);
+}
+
+.gift-card img {
+    width: 100%;
+    aspect-ratio: 4 / 3;   /* 🔥 kunci responsive */
+    height: 160px;
+    border-radius: 16px;
+    object-fit: cover;       /* AUTO CENTER */
+    object-position: center;
+    margin-bottom: 10px;
+}
+
+.gift-card span {
+    font-weight: 600;
+    color: #355CFF;
+}
+
+.gift-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 25px 45px rgba(60,90,255,.35);
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .gift-card img {
+        height: 130px;
+    }
+}
+
+.letter-photo {
+    width: 100%;
+    aspect-ratio: 3 / 4;   /* portrait seperti contoh */
+    border-radius: 18px;
+    overflow: hidden;
+    background: #eaefff;
+    box-shadow: 0 10px 25px rgba(0,0,0,.15);
+}
+
+.letter-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;      /* 🔥 AUTO CENTER */
+    object-position: center;
+}
+
+
+</style>
+</head>
+<body>
+
+<!-- MUSIK -->
+<audio id="music" src="Coldiac  Jangan Pernah Berubah Official Video.mp3" loop></audio>
+
+<!-- PAGE 1 -->
+<div class="page active" id="page1">
+    <div class="card-box text-center">
+        <h1>HAPPY BIRTHDAY NIRWANDAKUU❤️❤️</h1>
+        <p class="subtitle">CLICK FOTO MU YANG GEMOY ITU YAA</p>
+        <img src="img/foto18.jpg" class="gift-box-soft" onclick="openPage(2)">
+    </div>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page" id="page2">
+    <div class="card-box text-center">
+        <h1>SELAMAT ULANG TAHUN SAYANGKUUU</h1>
+        <h2>Dea Rizky Setiyo Nirwanda🥳</h2>
+        <h3>22th🎉🎂</h3>
+        <p class="subtitle"></p>
+
+        <div class="row mt-4 g-4">
+            <div class="col-md-4">
+                <div class="gift-card" onclick="openPage(3)">
+                    <img src="img/foto20.jpg" alt="">
+                    
+                    <small>Photos</small>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="gift-card" onclick="openPage(4)">
+                    <img src="img/foto21.jpg" alt="">
+                    <small>Music / Video</small>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="gift-card" onclick="openPage(5)">
+                    <img src="img/foto22.jpg" alt="">
+                    <small>BIRTHDAY GREETINGS</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- PAGE 3 PHOTO -->
+<div class="page" id="page3">
+    <div class="card-box">
+        <h1 class="text-center mb-4">Memories 💙</h1>
+
+        <div class="photo-grid">
+            <div class="photo tall" style="background-image:url('img/foto19.jpg'); background-size:cover;"></div>
+            <div class="photo"><img src="img/foto15.jpg"></div>
+            <div class="photo"><img src="img/foto3.jpg"></div>
+            <div class="photo"><img src="img/foto4.jpg"></div>
+            <div class="photo"><img src="img/foto11.jpg"></div>
+            <div class="photo"><img src="img/foto6.jpg"></div>
+            <div class="photo"><img src="img/foto7.jpg"></div>
+            <div class="photo"><img src="img/foto8.jpg"></div>
+            <div class="photo"><img src="img/foto16.jpg"></div>
+            <div class="photo"><img src="img/foto17.jpg"></div>
+        </div>
+
+        <div class="text-center">
+            <button class="btn btn-primary mt-4" onclick="openPage(2)">Back</button>
+        </div>
+    </div>
+</div>
+
+
+<!-- PAGE 4 VIDEO -->
+<div class="page" id="page4">
+    <div class="card-box video-card">
+        <h1 class="text-center mb-4">Our Special Song 🎵</h1>
+
+        <div class="row g-4 align-items-center">
+            <!-- KIRI -->
+            <div class="col-md-4">
+                <div class="video-info text-center">
+                    <div class="video-icon mb-3">🎶</div>
+                    <p class="small">
+                        Selamat ulang tahun, cintaku.
+                        Perasaanku padamu seperti gema
+                        datang lagi, tinggal lebih lama,
+                        dan tak pernah benar-benar hilang.
+
+                        Di setiap hariku, namamu selalu kembali,
+                        tenang, hangat, dan membuatku ingin menetap.
+                        Jika cinta adalah suara,
+                        biarlah milikku untukmu
+                        bergema sampai selamanya. 💖
+                    </p>
+                </div>
+            </div>
+
+            <!-- KANAN VIDEO -->
+            <div class="col-md-8">
+                <div class="video-frame">
+                    <iframe id="ytplayer"
+                        src="https://youtu.be/g0c7FeMn5lE?si=z28vN3_CfrVaETE-"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-4">
+            <button class="btn btn-primary" onclick="openPage(2)">Back</button>
+        </div>
+    </div>
+</div>
+
+
+<!-- PAGE 5 UCAPAN -->
+<div class="page" id="page5">
+    <div class="card-box letter-card">
+        <h1 class="text-center mb-4">HAPPY BIRTHDAY, MY LOVE!</h1>
+
+        <div class="row g-4 align-items-start">
+            <!-- FOTO KIRI -->
+            <div class="col-md-4">
+                <div class="letter-photo mb-3">
+                    <img src="img/foto1.jpg" >
+                </div>
+                
+
+            <!-- SURAT KANAN -->
+            <div class="col-md-8">
+                <div class="letter-text">
+                    <p>Selamat ulang tahun, cintaku.
+                        Hari ini bukan hanya tentang bertambahnya usiamu, tapi tentang betapa bersyukurnya 
+                        aku karena dunia pernah memutuskan untuk menghadirkan kamu ke dalam hidupku.
+                    </p>
+
+                    <p>
+                        Sejak kamu ada, hal-hal sederhana terasa lebih indah.
+                        Aku tidak tahu bagaimana masa depan akan menuliskan cerita kita, tapi satu hal yang pasti
+                        aku ingin ada di setiap babnya. Menemanimu tertawa, menggenggam tanganmu saat lelah, 
+                        dan mencintaimu dengan cara yang paling tulus yang aku punya.
+                    </p>
+
+                    <p>
+                        Terima kasih karena telah menjadi kamu yang apa adanya, yang kadang cerewet, kadang manja, 
+                        tapi selalu berhasil membuat hatiku jatuh cinta setiap hari. Semoga di usia baru ini, 
+                        semua mimpimu dipeluk oleh semesta, dan semoga aku tetap diberi kesempatan untuk menjadi 
+                        bagian dari kebahagiaanmu..
+                    </p>
+
+                    <p>
+                        Aku mencintaimu, hari ini, besok, dan selama hatiku masih tahu caranya pulang padamu. 💖
+                    </p>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-4">
+            <button class="btn btn-primary" onclick="openPage(2)">Back</button>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    let musicPlayed = false;
+
+    function openPage(page) {
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        document.getElementById('page'+page).classList.add('active');
+
+        if (!musicPlayed) {
+            document.getElementById('music').play().catch(()=>{});
+            musicPlayed = true;
+        }
+    }
+    </script>
+
+</body>
+</html>

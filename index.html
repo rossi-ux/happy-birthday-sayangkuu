@@ -370,6 +370,199 @@ h3 {
     object-position: center;
 }
 
+.photo-card {
+    max-width: 520px;
+}
+
+/* SLIDESHOW */
+.slideshow {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 18px 35px rgba(255,105,180,0.25);
+}
+
+/* FOTO */
+.slide {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* AUTO CENTER */
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
+}
+
+/* FOTO AKTIF */
+.slide.active {
+    opacity: 1;
+}
+
+/* RESPONSIVE */
+@media (max-width: 576px) {
+    .slideshow {
+        aspect-ratio: 1 / 1.25;
+    }
+}
+
+/* PAGE TRANSITION */
+.page {
+    display: none;
+    min-height: 100vh;
+    padding: 20px;
+    animation: fadeOut 0.4s ease forwards;
+}
+
+.page.active {
+    display: block;
+    animation: fadeIn 0.8s ease forwards;
+}
+
+/* FADE IN */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.98);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* OPTIONAL FADE OUT */
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+/* KERTAS PUTIH */
+.flower-paper {
+    background: #fff;
+    border-radius: 20px;
+    padding: 40px 30px;
+    max-width: 1100px;
+    margin: auto;
+}
+
+/* LAYOUT UTAMA */
+.flower-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr 1fr;
+    align-items: center;
+    gap: 30px;
+}
+
+/* KOLOM KIRI & KANAN */
+.flower-col {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* BUBBLE TEKS */
+.bubble {
+    border: 2px solid #f1b6c6;
+    border-radius: 20px;
+    padding: 12px 16px;
+    font-size: 14px;
+    color: #555;
+    opacity: 0;
+    animation: fadeIn 1s ease forwards;
+}
+
+/* TENGAH */
+.flower-center {
+    text-align: center;
+}
+
+.flower-main {
+    max-width: 300px;
+    opacity: 0;
+    animation: flowerIn 1.5s ease forwards;
+}
+
+.flower-title {
+    margin-top: 15px;
+    font-weight: bold;
+    color: #d94b6a;
+    opacity: 0;
+    animation: fadeIn 1s ease forwards;
+}
+
+.flower-sub {
+    font-size: 14px;
+    color: #777;
+    opacity: 0;
+    animation: fadeIn 1s ease forwards;
+}
+
+/* ANIMATION DELAY */
+.delay-2 { animation-delay: 1.5s; }
+.delay-3 { animation-delay: 2s; }
+.delay-4 { animation-delay: 2.5s; }
+.delay-5 { animation-delay: 3s; }
+.delay-6 { animation-delay: 3.2s; }
+.delay-7 { animation-delay: 3.6s; }
+
+/* ANIMATIONS */
+@keyframes flowerIn {
+    from {
+        opacity: 0;
+        transform: scale(0.85);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* RESPONSIVE HP */
+@media (max-width: 768px) {
+    .flower-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .flower-col {
+        align-items: center;
+    }
+
+    .bubble {
+        max-width: 90%;
+        text-align: center;
+    }
+}
+
+.fade-photo {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInPhoto 1.5s ease forwards;
+    animation-delay: 0.5s;
+}
+
+@keyframes fadeInPhoto {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 
 
 
@@ -427,72 +620,70 @@ h3 {
 </div>
 
 <!-- PAGE 3 PHOTO -->
-<div class="page active" id="page3">
-    <div class="card-box">
-        <h1 class="text-center mb-4">Memories 💙</h1>
+<!-- PAGE FOTO SLIDESHOW -->
+<div class="page" id="page3">
+    <div class="card-box text-center photo-card">
+        <h1 class="mb-3">Our Memories 💕</h1>
+        <p class="subtitle mb-4">Every moment with you is precious</p>
 
-        <div class="photo-grid">
-            <div class="photo tall" style="background-image:url('img/foto19.jpg'); background-size:cover;"></div>
-            <div class="photo"><img src="img/foto15.jpg"></div>
-            <div class="photo"><img src="img/foto3.jpg"></div>
-            <div class="photo"><img src="img/foto4.jpg"></div>
-            <div class="photo"><img src="img/foto11.jpg"></div>
-            <div class="photo"><img src="img/foto6.jpg"></div>
-            <div class="photo"><img src="img/foto7.jpg"></div>
-            <div class="photo"><img src="img/foto8.jpg"></div>
-            <div class="photo"><img src="img/foto16.jpg"></div>
-            <div class="photo"><img src="img/foto17.jpg"></div>
-        </div>
-
-        <div class="text-center">
-            <button class="btn btn-primary mt-4" onclick="openPage(2)">Back</button>
+        <div class="slideshow">
+            <img src="img/foto3.jpg" class="slide active">
+            <img src="img/foto4.jpg" class="slide">
+            <img src="img/foto11.jpg" class="slide">
+            <img src="img/foto6.jpg" class="slide">
+            <img src="img/foto7.jpg" class="slide">
+            <img src="img/foto8.jpg" class="slide">
+            <img src="img/foto16.jpg" class="slide">
+            <img src="img/foto17.jpg" class="slide">
+            <img src="img/tidur1.jpg" class="slide">
+            <img src="img/tidur2.jpg" class="slide">
+            <img src="img/foto15.jpg" class="slide">
         </div>
     </div>
 </div>
 
 
+
 <!-- PAGE 4 VIDEO -->
-<div class="page active" id="page4">
-    <div class="card-box video-card">
-        <h1 class="text-center mb-4">Our Special Song 🎵</h1>
+<!-- PAGE 4 FLOWER LETTER -->
+<div class="page" id="page4">
+    <div class="card-box flower-paper">
 
-        <div class="row g-4 align-items-center">
+        <div class="flower-layout">
+
             <!-- KIRI -->
-            <div class="col-md-4">
-                <div class="video-info text-center">
-                    <div class="video-icon mb-3">🎶</div>
-                    <p class="small">
-                        Selamat ulang tahun, cintaku.
-                        Perasaanku padamu seperti gema
-                        datang lagi, tinggal lebih lama,
-                        dan tak pernah benar-benar hilang.
-
-                        Di setiap hariku, namamu selalu kembali,
-                        tenang, hangat, dan membuatku ingin menetap.
-                        Jika cinta adalah suara,
-                        biarlah milikku untukmu
-                        bergema sampai selamanya. 💖
-                    </p>
-                </div>
+            <div class="flower-col left">
+                <div class="bubble delay-2">Seperti mawar ini, kehadiranmu selalu membuat segalanya terasa hangat.</div>
+                <div class="bubble delay-3">Kamu tak perlu berusaha terlalu keras menjadi dirimu sendiri sudah begitu indah.</div>
+                <div class="bubble delay-4">Aku akan selalu mencintaimu.</div>
+                <div class="bubble delay-5">Setiap hari bersamamu, terasa seperti momen yang ingin selalu kuingat.</div>
             </div>
 
-            <!-- KANAN VIDEO -->
-            <div class="col-md-8">
-                <div class="video-frame">
-                    <iframe id="ytplayer"
-                        src="https://youtu.be/g0c7FeMn5lE?si=z28vN3_CfrVaETE-"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen>
-                    </iframe>
-                </div>
+            <!-- TENGAH -->
+            <div class="flower-center">
+                <img src="img/bunga.png" class="flower-main" alt="Flower">
+                <h3 class="flower-title delay-6">BUCKET</h3>
+                <p class="flower-sub delay-7">your favorite flower</p>
             </div>
+
+            <!-- KANAN -->
+            <div class="flower-col right">
+                <div class="bubble delay-2">Kamu membuat hal-hal sederhana menjadi kenangan yang tak ingin aku lupakan.</div>
+                <div class="bubble delay-3">Seperti mawar yang mekar tepat waktunya, kamu membuat hariku selalu terasa lebih indah</div>
+                <div class="bubble delay-4">Kebaikanmu menyentuh hatiku dengan cara yang tak bisa diungkapkan kata-kata.</div>
+                <div class="bubble delay-5">Jika cinta punya bentuk, rasanya pasti seperti kamu.</div>
+            </div>
+
         </div>
 
         <div class="text-center mt-4">
             <button class="btn btn-primary" onclick="openPage(2)">Back</button>
         </div>
+
     </div>
 </div>
+
+
 
 
 <!-- PAGE 5 UCAPAN -->
@@ -503,7 +694,7 @@ h3 {
         <div class="row g-4 align-items-start">
             <!-- FOTO KIRI -->
             <div class="col-md-4">
-                <div class="letter-photo mb-3">
+                <div class="letter-photo mb-3 fade-photo">
                     <img src="img/foto1.jpg" >
                 </div>
                 
@@ -511,28 +702,25 @@ h3 {
             <!-- SURAT KANAN -->
             <div class="col-md-8">
                 <div class="letter-text">
-                    <p>Selamat ulang tahun, cintaku.
-                        Hari ini bukan hanya tentang bertambahnya usiamu, tapi tentang betapa bersyukurnya 
-                        aku karena dunia pernah memutuskan untuk menghadirkan kamu ke dalam hidupku.
-                    </p>
+                    <div class="letter-text">
+                    <p class="type-text" data-text="Selamat ulang tahun, cintaku. Hari ini bukan hanya tentang bertambahnya usiamu,
+                    tapi tentang betapa bersyukurnya aku karena dunia pernah memutuskan untuk menghadirkan kamu ke dalam hidupku."></p>
 
-                    <p>
-                        Sejak kamu ada, hal-hal sederhana terasa lebih indah.
-                        Aku tidak tahu bagaimana masa depan akan menuliskan cerita kita, tapi satu hal yang pasti
-                        aku ingin ada di setiap babnya. Menemanimu tertawa, menggenggam tanganmu saat lelah, 
-                        dan mencintaimu dengan cara yang paling tulus yang aku punya.
-                    </p>
+                    <p class="type-text" data-text="Sejak kamu ada, hal-hal sederhana terasa lebih indah.
+                    Aku tidak tahu bagaimana masa depan akan menuliskan cerita kita, tapi satu hal yang pasti aku 
+                    ingin ada di setiap babnya. Menemanimu tertawa, menggenggam tanganmu saat lelah, dan mencintaimu 
+                    dengan cara yang paling tulus yang aku punya."></p>
 
-                    <p>
-                        Terima kasih karena telah menjadi kamu yang apa adanya, yang kadang cerewet, kadang manja, 
-                        tapi selalu berhasil membuat hatiku jatuh cinta setiap hari. Semoga di usia baru ini, 
-                        semua mimpimu dipeluk oleh semesta, dan semoga aku tetap diberi kesempatan untuk menjadi 
-                        bagian dari kebahagiaanmu..
-                    </p>
+                    <p class="type-text" data-text="Terima kasih karena telah menjadi kamu yang apa adanya, 
+                    yang kadang cerewet, kadang manja, tapi selalu berhasil membuat hatiku jatuh cinta setiap hari.
+                    Semoga di usia baru ini, semua mimpimu dipeluk oleh semesta, dan semoga aku tetap diberi kesempatan 
+                    untuk menjadi bagian dari kebahagiaanmu."></p>
 
-                    <p>
-                        Aku mencintaimu, hari ini, besok, dan selama hatiku masih tahu caranya pulang padamu. 💖
-                    </p>
+                    <p class="type-text" data-text="Kamu mau bilang jelek, burik, apapun itu. Kamu tetap cantik di mataku, selalu. 
+                    Aku mencintaimu, hari ini, besok, dan selama hatiku masih tahu caranya pulang padamu."></p>
+                    <p class="type-text" data-text="LOVE YOU SAYANGGKUU 💕💕"></p>
+</div>
+
 
                 </div>
             </div>
@@ -546,18 +734,89 @@ h3 {
 
 
 <script>
-    let musicPlayed = false;
+let musicPlayed = false;
 
-    function openPage(page) {
-        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-        document.getElementById('page'+page).classList.add('active');
+function openPage(page) {
+    // sembunyikan semua page
+    document.querySelectorAll('.page').forEach(p => {
+        p.classList.remove('active');
+    });
 
-        if (!musicPlayed) {
-            document.getElementById('music').play().catch(()=>{});
-            musicPlayed = true;
+    // tampilkan page tujuan
+    const target = document.getElementById('page' + page);
+    target.classList.add('active');
+
+    // play music setelah interaksi pertama
+    if (!musicPlayed) {
+        const music = document.getElementById('music');
+        if (music) {
+            music.play().catch(() => {});
+        }
+        musicPlayed = true;
+    }
+
+    // scroll ke atas tiap pindah halaman
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+
+
+    <script>
+let slides = document.querySelectorAll('.slide');
+let index = 0;
+
+setInterval(() => {
+    slides[index].classList.remove('active');
+    index = (index + 1) % slides.length;
+    slides[index].classList.add('active');
+}, 3000); // ganti foto tiap 4 detik
+</script>
+
+<script>
+function typeWriter(element, text, speed, callback) {
+    let i = 0;
+    element.innerHTML = "";
+
+    function typing() {
+        if (i < text.length) {
+            element.innerHTML += text.charAt(i);
+            i++;
+            setTimeout(typing, speed);
+        } else if (callback) {
+            setTimeout(callback, 500);
         }
     }
-    </script>
+    typing();
+}
+
+function startTyping() {
+    const texts = document.querySelectorAll("#page5 .type-text");
+    let index = 0;
+
+    function nextText() {
+        if (index < texts.length) {
+            const el = texts[index];
+            const text = el.getAttribute("data-text");
+            typeWriter(el, text, 35, () => {
+                index++;
+                nextText();
+            });
+        }
+    }
+    nextText();
+}
+
+// Panggil saat page5 dibuka
+const originalOpenPage = openPage;
+openPage = function(pageNumber) {
+    originalOpenPage(pageNumber);
+
+    if (pageNumber === 5) {
+        setTimeout(startTyping, 500);
+    }
+};
+</script>
+
 
 </body>
 </html>

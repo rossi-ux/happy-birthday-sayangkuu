@@ -624,13 +624,20 @@ h3 {
 }
 
 
+/* KUNCI SCROLL */
+.lock-scroll {
+    height: 100vh;
+    overflow: hidden;
+    touch-action: none; /* penting untuk HP */
+}
 
 
 
 
 </style>
 </head>
-<body>
+<body class="lock-scroll">
+
 <div class="love-bg">
     <div class="layer small"></div>
     <div class="layer medium"></div>
@@ -674,7 +681,7 @@ h3 {
             <div class="col-md-4">
                 <div class="gift-card" onclick="openPage(5)">
                     <img src="img/foto22.jpg" alt="">
-                    <small>BIRTHDAY GREETINGS</small>
+                    <small>JANGAN DI BUKA ALAYY  💕 💕</small>
                 </div>
             </div>
         </div>
@@ -756,7 +763,7 @@ h3 {
 <div class="page" id="page5">
     <div class="card-box letter-card">
 
-        <h1 class="text-center mb-4">jangan dibuka ini alay 💖</h1>
+        <h1 class="text-center mb-4">HAPPY BIRTHDAY YA SAYANGGG  💕 💕 💕</h1>
 
         <div class="row g-4 align-items-start">
 
@@ -829,6 +836,13 @@ Aku mencintaimu, hari ini, besok, dan selama hatiku masih tahu caranya pulang pa
 let musicPlayed = false;
 
 function openPage(page) {
+
+    // === SCROLL CONTROL ===
+    if (page === 1) {
+        document.body.classList.add("lock-scroll");
+    } else {
+        document.body.classList.remove("lock-scroll");
+    }
 
     /* HIDE ALL PAGES */
     document.querySelectorAll('.page').forEach(p => {

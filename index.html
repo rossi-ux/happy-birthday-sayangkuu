@@ -92,6 +92,8 @@ body {
 }
 
 .card-box {
+    position: relative;
+    z-index: 10;
     background: linear-gradient(135deg, #ffd1e6, #ffb3d9, #ffe6f1);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
@@ -409,6 +411,8 @@ h3 {
 
 /* PAGE TRANSITION */
 .page {
+    position: relative;
+    z-index: 5;
     display: none;
     min-height: 100vh;
     padding: 20px;
@@ -564,6 +568,64 @@ h3 {
     }
 }
 
+.video-greeting {
+    position: relative;
+    max-width: 100%;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(255, 105, 180, 0.35);
+}
+
+.video-greeting video {
+    width: 100%;
+    border-radius: 20px;
+    display: block;
+}
+
+.play-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 64px;
+    color: white;
+    cursor: pointer;
+    transition: opacity .4s ease;
+}
+
+.play-overlay:hover {
+    background: rgba(0,0,0,0.45);
+}
+
+/* GREETING SLIDESHOW */
+.greeting-slideshow {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 18px 35px rgba(255,105,180,0.25);
+}
+
+.greet-slide {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
+}
+
+.greet-slide.active {
+    opacity: 1;
+}
+
+
+
+
 
 
 </style>
@@ -600,13 +662,13 @@ h3 {
                 <div class="gift-card" onclick="openPage(3)">
                     <img src="img/foto20.jpg" alt="">
                     
-                    <small>Photos</small>
+                    <small>Memorable</small>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="gift-card" onclick="openPage(4)">
                     <img src="img/foto21.jpg" alt="">
-                    <small>Music / Video</small>
+                    <small>???</small>
                 </div>
             </div>
             <div class="col-md-4">
@@ -638,6 +700,9 @@ h3 {
             <img src="img/tidur1.jpg" class="slide">
             <img src="img/tidur2.jpg" class="slide">
             <img src="img/foto15.jpg" class="slide">
+        </div>
+        <div class="text-center mt-4">
+            <button class="btn btn-primary" onclick="openPage(2)">Back</button>
         </div>
     </div>
 </div>
@@ -687,66 +752,94 @@ h3 {
 
 
 <!-- PAGE 5 UCAPAN -->
-<div class="page active" id="page5">
+<!-- PAGE 5 UCAPAN -->
+<div class="page" id="page5">
     <div class="card-box letter-card">
-        <h1 class="text-center mb-4">HAPPY BIRTHDAY, MY LOVE!</h1>
+
+        <h1 class="text-center mb-4">jangan dibuka ini alay 💖</h1>
 
         <div class="row g-4 align-items-start">
-            <!-- FOTO KIRI -->
+
+            <!-- KIRI : FOTO SLIDESHOW -->
             <div class="col-md-4">
-                <div class="letter-photo mb-3 fade-photo">
-                    <img src="img/foto1.jpg" >
-                </div>
-                
-
-            <!-- SURAT KANAN -->
-            <div class="col-md-8">
-                <div class="letter-text">
-                    <div class="letter-text">
-                    <p class="type-text" data-text="Selamat ulang tahun, cintaku. Hari ini bukan hanya tentang bertambahnya usiamu,
-                    tapi tentang betapa bersyukurnya aku karena dunia pernah memutuskan untuk menghadirkan kamu ke dalam hidupku."></p>
-
-                    <p class="type-text" data-text="Sejak kamu ada, hal-hal sederhana terasa lebih indah.
-                    Aku tidak tahu bagaimana masa depan akan menuliskan cerita kita, tapi satu hal yang pasti aku 
-                    ingin ada di setiap babnya. Menemanimu tertawa, menggenggam tanganmu saat lelah, dan mencintaimu 
-                    dengan cara yang paling tulus yang aku punya."></p>
-
-                    <p class="type-text" data-text="Terima kasih karena telah menjadi kamu yang apa adanya, 
-                    yang kadang cerewet, kadang manja, tapi selalu berhasil membuat hatiku jatuh cinta setiap hari.
-                    Semoga di usia baru ini, semua mimpimu dipeluk oleh semesta, dan semoga aku tetap diberi kesempatan 
-                    untuk menjadi bagian dari kebahagiaanmu."></p>
-
-                    <p class="type-text" data-text="Kamu mau bilang jelek, burik, apapun itu. Kamu tetap cantik di mataku, selalu. 
-                    Aku mencintaimu, hari ini, besok, dan selama hatiku masih tahu caranya pulang padamu."></p>
-                    <p class="type-text" data-text="LOVE YOU SAYANGGKUU 💕💕"></p>
-</div>
-
-
+                <div class="slideshow greeting-slideshow">
+                    <img src="img/baru1.jpg" class="greet-slide active">
+                    <img src="img/baru2.jpg" class="greet-slide">
+                    <img src="img/baru3.jpg" class="greet-slide">
+                    <img src="img/baru4.jpg" class="greet-slide">
+                    <img src="img/baru5.jpg" class="greet-slide">
+                    <img src="img/baru6.jpg" class="greet-slide">
+                    <img src="img/baru7.jpg" class="greet-slide">
+                    <img src="img/baru8.jpg" class="greet-slide">
+                    <img src="img/baru9.jpg" class="greet-slide">
+                    <img src="img/baru10.jpg" class="greet-slide">
+                    <img src="img/baru11.jpg" class="greet-slide">
+                    <img src="img/baru12.jpg" class="greet-slide">
+                    <img src="img/baru13.jpg" class="greet-slide">
+                   
                 </div>
             </div>
+
+            <!-- KANAN : UCAPAN (TETAP SEPERTI ASLI) -->
+            <div class="col-md-8">
+                <div class="letter-text">
+
+    <p class="type-text" data-text="Selamat ulang tahun, cintaku.
+Hari ini bukan hanya tentang bertambahnya usiamu, tapi tentang betapa bersyukurnya 
+aku karena dunia pernah memutuskan untuk menghadirkan kamu ke dalam hidupku."></p>
+
+    <p class="type-text" data-text="Sejak kamu ada, hal-hal sederhana terasa lebih indah.
+Aku tidak tahu bagaimana masa depan akan menuliskan cerita kita, tapi satu hal yang pasti
+aku ingin ada di setiap babnya. Menemanimu tertawa, menggenggam tanganmu saat lelah, 
+dan mencintaimu dengan cara yang paling tulus yang aku punya."></p>
+
+    <p class="type-text" data-text="Terima kasih karena telah menjadi kamu yang apa adanya, 
+yang kadang cerewet, kadang manja, tapi selalu berhasil membuat hatiku jatuh cinta setiap hari.
+Semoga di usia baru ini, semua mimpimu dipeluk oleh semesta, dan semoga aku tetap diberi kesempatan 
+untuk menjadi bagian dari kebahagiaanmu."></p>
+
+    <p class="type-text" data-text="Kamu mau bilang jelek, burik, apapun itu.
+Kamu tetap cantik di mataku, selalu.
+Aku mencintaimu, hari ini, besok, dan selama hatiku masih tahu caranya pulang padamu. 💖"></p>
+
+    <p class="type-text fw-bold" data-text="LOVE YOU SAYANGGKUU 💕💕"></p>
+
+</div>
+</div>
+            </div>
+
         </div>
 
         <div class="text-center mt-4">
             <button class="btn btn-primary" onclick="openPage(2)">Back</button>
         </div>
+
     </div>
 </div>
 
 
+
+
+
+
 <script>
+/* ===============================
+   MUSIC & PAGE NAVIGATION
+================================ */
 let musicPlayed = false;
 
 function openPage(page) {
-    // sembunyikan semua page
+
+    /* HIDE ALL PAGES */
     document.querySelectorAll('.page').forEach(p => {
         p.classList.remove('active');
     });
 
-    // tampilkan page tujuan
+    /* SHOW TARGET PAGE */
     const target = document.getElementById('page' + page);
-    target.classList.add('active');
+    if (target) target.classList.add('active');
 
-    // play music setelah interaksi pertama
+    /* PLAY MUSIC AFTER FIRST CLICK */
     if (!musicPlayed) {
         const music = document.getElementById('music');
         if (music) {
@@ -755,67 +848,143 @@ function openPage(page) {
         musicPlayed = true;
     }
 
-    // scroll ke atas tiap pindah halaman
+    /* RESET & HANDLE GREETING SLIDESHOW */
+    if (page === 5) {
+        startGreetingSlideshow();
+    } else {
+        stopGreetingSlideshow();
+    }
+
+    /* SCROLL TO TOP */
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 </script>
 
 
-    <script>
-let slides = document.querySelectorAll('.slide');
-let index = 0;
+<script>
+/* ===============================
+   PAGE 3 : MEMORIES SLIDESHOW
+================================ */
+let memorySlides = document.querySelectorAll('#page3 .slide');
+let memoryIndex = 0;
 
-setInterval(() => {
-    slides[index].classList.remove('active');
-    index = (index + 1) % slides.length;
-    slides[index].classList.add('active');
-}, 3000); // ganti foto tiap 4 detik
+if (memorySlides.length) {
+    setInterval(() => {
+        memorySlides[memoryIndex].classList.remove('active');
+        memoryIndex = (memoryIndex + 1) % memorySlides.length;
+        memorySlides[memoryIndex].classList.add('active');
+    }, 3000);
+}
+</script>
+
+
+<script>
+/* ===============================
+   PAGE 5 : GREETING SLIDESHOW
+================================ */
+let greetingSlides = [];
+let greetingIndex = 0;
+let greetingTimer = null;
+
+function startGreetingSlideshow() {
+    greetingSlides = document.querySelectorAll('#page5 .greet-slide');
+
+    if (!greetingSlides.length) return;
+
+    greetingIndex = 0;
+    greetingSlides.forEach((slide, i) => {
+        slide.classList.toggle('active', i === 0);
+    });
+
+    greetingTimer = setInterval(() => {
+        greetingSlides[greetingIndex].classList.remove('active');
+        greetingIndex = (greetingIndex + 1) % greetingSlides.length;
+        greetingSlides[greetingIndex].classList.add('active');
+    }, 2000);
+}
+
+function stopGreetingSlideshow() {
+    clearInterval(greetingTimer);
+    greetingTimer = null;
+}
 </script>
 
 <script>
-function typeWriter(element, text, speed, callback) {
+let typingTimers = [];
+let isTyping = false;
+
+function typeWriter(el, text, speed, callback) {
     let i = 0;
-    element.innerHTML = "";
+    el.innerHTML = "";
 
     function typing() {
         if (i < text.length) {
-            element.innerHTML += text.charAt(i);
+            el.innerHTML += text.charAt(i);
             i++;
-            setTimeout(typing, speed);
+            const t = setTimeout(typing, speed);
+            typingTimers.push(t);
         } else if (callback) {
-            setTimeout(callback, 500);
+            const t = setTimeout(callback, 400);
+            typingTimers.push(t);
         }
     }
     typing();
 }
 
 function startTyping() {
+    if (isTyping) return;
+    isTyping = true;
+
     const texts = document.querySelectorAll("#page5 .type-text");
     let index = 0;
 
-    function nextText() {
+    texts.forEach(el => el.innerHTML = "");
+
+    function next() {
         if (index < texts.length) {
             const el = texts[index];
             const text = el.getAttribute("data-text");
             typeWriter(el, text, 35, () => {
                 index++;
-                nextText();
+                next();
             });
+        } else {
+            isTyping = false;
         }
     }
-    nextText();
+    next();
 }
 
-// Panggil saat page5 dibuka
-const originalOpenPage = openPage;
+function resetTyping() {
+    typingTimers.forEach(t => clearTimeout(t));
+    typingTimers = [];
+    isTyping = false;
+
+    document.querySelectorAll("#page5 .type-text").forEach(el => {
+        el.innerHTML = "";
+    });
+}
+
+/* HOOK KE openPage */
+const _openPage = openPage;
 openPage = function(pageNumber) {
-    originalOpenPage(pageNumber);
+
+    if (document.getElementById("page5").classList.contains("active")) {
+        resetTyping();
+    }
+
+    _openPage(pageNumber);
 
     if (pageNumber === 5) {
-        setTimeout(startTyping, 500);
+        setTimeout(startTyping, 600);
     }
 };
 </script>
+
+
+
+
+
 
 
 </body>
